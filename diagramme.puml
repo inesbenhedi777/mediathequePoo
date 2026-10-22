@@ -1,0 +1,137 @@
+@startuml
+
+' Abstract class Document
+abstract class Document {
+    - {static} compteur: int
+    - {final} id: int
+    - {final} titre: String
+    - {final} annee: int
+    + {abstract} descriptionCourte(): String
+    + getTitre(): String
+    + getId(): int
+    + compareTo(Document autre): int
+}
+
+' Interface Empruntable
+interface Empruntable {
+    + emprunter(): void throws DocumentIndisponibleException
+    + rendre(): void
+    + estDisponible(): boolean
+}
+
+' Interface AutoCloseable
+interface AutoCloseable {
+    + close(): void
+}
+
+' Concrete classes
+class Livre {
+    - auteur: String
+    - nbPages: int
+    - disponible: boolean
+    + descriptionCourte(): String
+    + emprunter(): void
+    + rendre(): void
+    + estDisponible(): boolean
+}
+
+class Dvd {
+    - dureeMin: int
+    - disponible: boolean
+    + descriptionCourte(): String
+    + emprunter(): void
+    + rendre(): void
+    + estDisponible(): boolean
+}
+
+class Revue {
+    - numero: int
+    + descriptionCourte(): String
+}
+
+' Generic class Catalogue
+class Catalogue<T extends Document> {
+    - elements: List<T>
+    + ajouter(T element): void
+    + rechercherParTitre(String titre): Optional<T>
+    + afficherTout(): void
+    + {static} max(List<T> liste): T
+}
+
+' Exception hierarchy
+abstract class MediathequeException {
+    + MediathequeException(String message)
+    + MediathequeException(String message, Throwable cause)
+}
+
+class DocumentIndisponibleException {
+    + DocumentIndisponibleException(String message)
+    + DocumentIndisponibleException(String message, Throwable cause)
+}
+
+class DocumentIntrouvableException {
+    + DocumentIntrouvableException(String message)
+    + DocumentIntrouvableException(String message, Throwable cause)
+}
+
+' Composition classes
+class Bibliothecaire {
+    - catalogue: Catalogue<Document>
+    - nom: String
+    + Bibliothecaire(String nom, Catalogue<Document> catalogue)
+    + accueillir(): void
+    + ajouterDocument(Document d): void
+    + afficherCatalogue(): void
+}
+
+class EmpruntManager {
+    - catalogue: Catalogue<Document>
+    + EmpruntManager(Catalogue<Document> catalogue)
+    + emprunter(String titre): void
+}
+
+class RapportEmprunts {
+    - nbEmprunts: int
+    + enregistrer(): void
+    + close(): void
+}
+
+' Inheritance relationships
+Document <|-- Livre
+Document <|-- Dvd
+Document <|-- Revue
+
+' Interface implementation
+Empruntable <|.. Livre
+Empruntable <|.. Dvd
+
+' Dependency
+Catalogue ..> Document : uses
+
+' Exception hierarchy
+MediathequeException <|-- DocumentIndisponibleException
+MediathequeException <|-- DocumentIntrouvableException
+
+' Composition relationships
+Bibliothecaire *-- Catalogue : composition
+EmpruntManager *-- Catalogue : composition
+
+' AutoCloseable
+RapportEmprunts ..|> AutoCloseable
+
+' Note about Revue
+note right of Revue
+  Revue extends Document
+  but does NOT implement
+  Empruntable
+  ("est un" != "sait faire")
+end note
+
+' Note about composition
+note right of Bibliothecaire
+  Bibliothecaire HAS-A
+  Catalogue (composition)
+  not IS-A (inheritance)
+end note
+
+@enduml
