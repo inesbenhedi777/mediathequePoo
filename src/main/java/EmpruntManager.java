@@ -1,7 +1,7 @@
 public class EmpruntManager {
-    private final Catalogue catalogue;
+    private final Catalogue<Document> catalogue;
 
-    public EmpruntManager(Catalogue catalogue) {
+    public EmpruntManager(Catalogue<Document> catalogue) {
         this.catalogue = catalogue;
     }
 

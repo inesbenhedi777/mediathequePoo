@@ -1,8 +1,8 @@
 public class Bibliothecaire {
-    private final Catalogue catalogue; // COMPOSITION, pas heritage
+    private final Catalogue<Document> catalogue; // COMPOSITION, pas heritage
     private final String nom;
 
-    public Bibliothecaire(String nom, Catalogue catalogue) {
+    public Bibliothecaire(String nom, Catalogue<Document> catalogue) {
         this.nom = nom;
         this.catalogue = catalogue;
     }
