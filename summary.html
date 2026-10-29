@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé du Projet Médiathèque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #7f8c8d;
+        }
+        .section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        code {
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .pattern-card {
+            border: 1px solid #bdc3c7;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+        }
+        .pattern-card h4 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Résumé du Projet Médiathèque</h1>
+
+    <h2>Séance 3 : Introduction aux Design Patterns</h2>
+
+    <div class="section">
+        <h3>Historique des Design Patterns</h3>
+        <ul>
+            <li><strong>1977</strong> - Christopher Alexander publie "A Pattern Language" (architecture)</li>
+            <li><strong>1994</strong> - Gang of Four (GoF) publie "Design Patterns: Elements of Reusable Object-Oriented Software"</li>
+            <li><strong>23 patterns</strong> classifiés dans l'ouvrage original</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Classification des 23 Patterns GoF</h3>
+        <ul>
+            <li><strong>Créationnels (5)</strong> : Abstract Factory, Builder, Factory Method, Prototype, Singleton</li>
+            <li><strong>Structurels (7)</strong> : Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy</li>
+            <li><strong>Comportementaux (11)</strong> : Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Ce qu'un pattern N'EST PAS</h3>
+        <ul>
+            <li>❌ Ce n'est <strong>pas un algorithme</strong> - un pattern est une solution de conception, pas une procédure pas-à-pas</li>
+            <li>❌ Ce n'est <strong>pas une bibliothèque</strong> - un pattern est une idée, pas du code copier-coller</li>
+            <li>❌ Ce n'est <strong>pas du code prêt à l'emploi</strong> - chaque implémentation s'adapte au contexte</li>
+            <li>❌ Ce n'est <strong>pas obligatoire</strong> - on ne doit pas forcer un pattern s'il n'est pas nécessaire</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Fiche Technique : Iterator</h3>
+
+        <div class="pattern-card">
+            <h4>Intention</h4>
+            <p>Permettre un accès séquentiel aux éléments d'un agrégat sans exposer sa représentation interne.</p>
+        </div>
+
+        <div class="pattern-card">
+            <h4>Participants</h4>
+            <ul>
+                <li><strong>Iterable&lt;T&gt;</strong> : interface qui définit la méthode iterator()</li>
+                <li><strong>Iterator&lt;T&gt;</strong> : interface qui définit hasNext() et next()</li>
+                <li><strong>Client</strong> : code qui utilise le for-each ou l'iterator pour parcourir</li>
+            </ul>
+        </div>
+
+        <div class="pattern-card">
+            <h4>Conséquences</h4>
+            <ul>
+                <li><strong>+</strong> Meilleure encapsulation : la structure interne reste cachée</li>
+                <li><strong>+</strong> Parcours uniforme : le même code for-each fonctionne pour différentes collections</li>
+                <li><strong>-</strong> Une indirection supplémentaire : légère complexité ajoutée</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Séance 4 : Principes SOLID</h2>
+
+    <div class="section">
+        <h3>Les 5 Principes SOLID</h3>
+        <ul>
+            <li><strong>S</strong> - Single Responsibility Principle (SRP) : Une classe doit avoir une seule raison de changer</li>
+            <li><strong>O</strong> - Open/Closed Principle (OCP) : Ouvert à l'extension, fermé à la modification</li>
+            <li><strong>L</strong> - Liskov Substitution Principle (LSP) : Les sous-types doivent être substituables à leurs types de base</li>
+            <li><strong>I</strong> - Interface Segregation Principle (ISP) : Les clients ne devraient dépendre que des méthodes qu'ils utilisent</li>
+            <li><strong>D</strong> - Dependency Inversion Principle (DIP) : Dépendre des abstractions, pas des implémentations concrètes</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Code Smells → Principes Violés</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code Smell</th>
+                    <th>Principe Violé</th>
+                    <th>Explication</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"et" dans la description d'une classe</td>
+                    <td>SRP</td>
+                    <td>La classe fait plusieurs choses (ex: "format ET écrit ET notifie")</td>
+                </tr>
+                <tr>
+                    <td>if/switch cascade sur un type</td>
+                    <td>OCP</td>
+                    <td>Ajouter un nouveau type nécessite de modifier le code existant</td>
+                </tr>
+                <tr>
+                    <td>UnsupportedOperationException dans une implémentation</td>
+                    <td>ISP</td>
+                    <td>L'interface est trop grosse, certaines méthodes ne s'appliquent pas</td>
+                </tr>
+                <tr>
+                    <td>new d'un détail technique dans la logique métier</td>
+                    <td>DIP</td>
+                    <td>Le code dépend directement d'une implémentation concrète</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Rétrospective SOLID sur les Sessions Précédentes</h3>
+        <ul>
+            <li><strong>Session 1</strong> : Revue n'implémente pas Empruntable → <strong>ISP</strong> (Revue ne dépend pas de méthodes qu'elle ne peut pas utiliser)</li>
+            <li><strong>Session 2</strong> : Bibliothecaire HAS-A Catalogue → <strong>DIP</strong> (dépendance sur l'abstraction, pas sur l'implémentation concrète)</li>
+            <li><strong>Session 3</strong> : Catalogue implémente Iterable → <strong>OCP</strong> (ouvert à différents parcours, fermé à la modification de la structure interne)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Application SOLID : RapportService</h3>
+
+        <div class="pattern-card">
+            <h4>SRP - Séparation des Responsabilités</h4>
+            <ul>
+                <li><strong>FormatRapport</strong> : charge de formater (CSV, TXT, JSON)</li>
+                <li><strong>DestinationRapport</strong> : charge d'écrire (disque, mémoire, etc.)</li>
+                <li><strong>Notificateur</strong> : charge de notifier (email, SMS, etc.)</li>
+                <li><strong>RapportService</strong> : orchestration uniquement</li>
+            </ul>
+        </div>
+
+        <div class="pattern-card">
+            <h4>OCP - Format Extensible</h4>
+            <p>Ajouter FormatJson ne nécessite AUCUNE modification des fichiers existants. Seul un nouveau fichier est créé.</p>
+            <p><strong>Preuve</strong> : FormatJson a été ajouté sans toucher à RapportService, FormatCsv, FormatTxt, ou les tests existants.</p>
+        </div>
+
+        <div class="pattern-card">
+            <h4>DIP - Injection de Dépendances</h4>
+            <ul>
+                <li>RapportService reçoit FormatRapport, DestinationRapport, Notificateur via constructeur</li>
+                <li>Pas de <code>new FileWriter</code>, <code>new ServeurSmtp</code> dans la logique métier</li>
+                <li>Les implémentations concrètes (EcrivainDisque, NotificateurEmail) sont injectées</li>
+                <li>Les exceptions ne sont plus avalées (IOException propagée)</li>
+            </ul>
+        </div>
+
+        <div class="pattern-card">
+            <h4>Testabilité - Fakes/Stubs</h4>
+            <p>Grâce au DIP, RapportService est testable sans :</p>
+            <ul>
+                <li>Toucher au système de fichiers réel (FakeDestination écrit en mémoire)</li>
+                <li>Envoyer de vrais emails (FakeNotificateur enregistre juste l'appel)</li>
+                <li>Utiliser des formats complexes (FormatCsv est simple et testable)</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -24,6 +24,19 @@ interface AutoCloseable {
     + close(): void
 }
 
+' Report generation interfaces
+interface FormatRapport {
+    + formatter(List<Document>): String
+}
+
+interface Notificateur {
+    + notifier(String message): void
+}
+
+interface DestinationRapport {
+    + ecrire(String contenu): void
+}
+
 ' Concrete classes
 class Livre {
     - auteur: String
@@ -96,6 +109,45 @@ class RapportEmprunts {
     + close(): void
 }
 
+' Report generation classes
+class RapportService {
+    - format: FormatRapport
+    - destination: DestinationRapport
+    - notificateur: Notificateur
+    + RapportService(FormatRapport, DestinationRapport, Notificateur)
+    + genererRapport(List<Document>): void throws IOException
+}
+
+class FormatCsv implements FormatRapport {
+    + formatter(List<Document>): String
+}
+
+class FormatTxt implements FormatRapport {
+    + formatter(List<Document>): String
+}
+
+class FormatJson implements FormatRapport {
+    + formatter(List<Document>): String
+}
+
+class NotificateurEmail implements Notificateur {
+    - serveur: ServeurSmtp
+    + NotificateurEmail(ServeurSmtp)
+    + notifier(String message): void
+}
+
+class EcrivainDisque implements DestinationRapport {
+    - chemin: String
+    + EcrivainDisque(String chemin)
+    + ecrire(String contenu): void throws IOException
+}
+
+class ServeurSmtp {
+    - serveur: String
+    + ServeurSmtp(String serveur)
+    + envoyer(String destinataire, String sujet): void
+}
+
 ' Inheritance relationships
 Document <|-- Livre
 Document <|-- Dvd
@@ -119,6 +171,19 @@ EmpruntManager *-- Catalogue : composition
 ' AutoCloseable
 RapportEmprunts ..|> AutoCloseable
 
+' Report generation interface implementations
+FormatRapport <|.. FormatCsv
+FormatRapport <|.. FormatTxt
+FormatRapport <|.. FormatJson
+Notificateur <|.. NotificateurEmail
+DestinationRapport <|.. EcrivainDisque
+
+' Report generation dependencies
+RapportService ..> FormatRapport : uses
+RapportService ..> Notificateur : uses
+RapportService ..> DestinationRapport : uses
+NotificateurEmail --> ServeurSmtp : uses
+
 ' Note about Revue
 note right of Revue
   Revue extends Document
@@ -132,6 +197,17 @@ note right of Bibliothecaire
   Bibliothecaire HAS-A
   Catalogue (composition)
   not IS-A (inheritance)
+end note
+
+' Note about SOLID
+note right of RapportService
+  SOLID en action:
+  - SRP: FormatRapport, Notificateur,
+    DestinationRapport séparent les responsabilités
+  - OCP: Nouveau format = nouvelle classe
+    (ex: FormatJson), sans modifier le service
+  - DIP: Injection via constructeur,
+    pas de new dans la logique métier
 end note
 
 @enduml
