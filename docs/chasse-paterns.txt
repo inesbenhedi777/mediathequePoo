@@ -1,0 +1,25 @@
+CHASSE AUX PATTERNS - SEANCE 3
+
+Extrait 1
+Reader r = new BufferedReader(new InputStreamReader(System.in));
+- pattern : Decorator (BufferedReader enveloppe un Reader)
+- famille : structurel
+-justification : ajoute une fonctionnalite (tampon, readLine) a un Reader sans modifier sa classe ni creer une sous-classe par combinaison.
+
+Extrait 2
+documents.sort(Comparator.comparing(Document::getTitre));
+-pattern : Strategy (le Comparator est l'algorithme de comparaison)
+-famille : comportemental
+-justification : sort() ne connait pas le critere de tri, on peut changer de critere sans toucher a l'algorithme de tri.
+
+Extrait 3
+LocalDate date = LocalDate.of(2026, 9, 15);
+-pattern : Factory Method (methode de fabrique statique)
+-famille : creationnel
+-justification : le constructeur est cache, la creation a un nom clair et peut valider les valeurs. Le client ne depend pas de la classe concrete.
+
+Extrait 4
+List<String> vue = Collections.unmodifiableList(maListe);
+-pattern : Proxy (de protection)
+-famille : structurel
+-justification : fournit une vue en lecture seule de la liste. Toute modification leve UnsupportedOperationException, la liste d'origine est protegee.
