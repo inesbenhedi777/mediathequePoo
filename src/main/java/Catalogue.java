@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Catalogue<T extends Document> implements Iterable <T> {
 
@@ -29,5 +30,9 @@ public class Catalogue<T extends Document> implements Iterable <T> {
         }
 
         return m;
+    }
+
+    public Stream<T> stream() {
+        return elements.stream();
     }
 }
