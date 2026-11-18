@@ -84,7 +84,7 @@ class RapportServiceTest {
         FakeNotificateur notificateur = new FakeNotificateur();
 
         new RapportService(format, destination, notificateur).genererRapport(docs);
-        
+
         assertSame(docs, format.getDocsRecus());
         assertEquals("CONTENU-FAKE", destination.getContenuEcrit());
         assertTrue(notificateur.estNotifie());
