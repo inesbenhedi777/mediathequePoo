@@ -14,7 +14,7 @@ class EmpruntManagerTest {
     @Test
     void emprunterDejaEmprunte() {
         Catalogue<Document> catalogue = new Catalogue<>();
-        Livre livre = new Livre("Clean Code", 2008, "R. Martin", 464);
+        Livre livre = new Livre.Builder("Clean Code", 2008, "R. Martin", 464).build();
         catalogue.ajouter(livre);
         EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 
@@ -44,7 +44,7 @@ class EmpruntManagerTest {
     @Test
     void rapportEmpruntsAutoCloseable() {
         Catalogue<Document> catalogue = new Catalogue<>();
-        Livre livre = new Livre("Clean Code", 2008, "R. Martin", 464);
+        Livre livre = new Livre.Builder("Clean Code", 2008, "R. Martin", 464).build();
         catalogue.ajouter(livre);
         EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 

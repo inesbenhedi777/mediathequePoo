@@ -6,7 +6,7 @@ class CatalogueTest {
 
     @Test
     void empruntNominal() throws DocumentIndisponibleException {
-        Livre l = new Livre.Builder("Clean Code", 2008, "R. Martin", 464).build();
+        Livre l = new Livre.Builder("Refactoring", 1999, "M. Fowler", 448).build();
 
         l.emprunter();
 
@@ -19,7 +19,7 @@ class CatalogueTest {
 
     @Test
     void doubleEmpruntLeveException() throws DocumentIndisponibleException {
-        Livre l = new Livre("Refactoring", 1999, "M. Fowler", 448);
+        Livre l = new Livre.Builder("Refactoring", 1999, "M. Fowler", 448).build();
 
         l.emprunter();
 

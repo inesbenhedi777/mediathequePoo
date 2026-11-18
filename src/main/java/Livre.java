@@ -18,6 +18,15 @@ public class Livre extends Document implements Empruntable {
         this.langue = b.langue;
     }
 
+    public Livre(Livre original) {
+        super(original.titre, original.annee);
+        this.auteur = original.auteur;
+        this.nbPages = original.nbPages;
+        this.isbn = original.isbn;
+        this.editeur = original.editeur;
+        this.langue = original.langue;
+    }
+
     public String getIsbn() { return isbn; }
     public String getEditeur() { return editeur; }
     public String getLangue() { return langue; }

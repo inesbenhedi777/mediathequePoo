@@ -42,7 +42,7 @@ class RapportServiceTest {
     @Test
     void genererRapportAvecFakes() throws IOException {
         List<Document> docs = new ArrayList<>();
-        docs.add(new Livre("Clean Code", 2008, "R. Martin", 464));
+        docs.add(new Livre.Builder("Clean Code", 2008, "R. Martin", 464).build());
         docs.add(new Dvd("Matrix", 1999, 136));
 
         FormatRapport format = new FormatCsv();
