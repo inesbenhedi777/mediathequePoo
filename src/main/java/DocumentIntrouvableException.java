@@ -3,4 +3,7 @@ public class DocumentIntrouvableException extends MediathequeException{
         super(message);
     }
 
+    public DocumentIntrouvableException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
