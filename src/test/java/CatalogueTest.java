@@ -6,7 +6,7 @@ class CatalogueTest {
 
     @Test
     void empruntNominal() throws DocumentIndisponibleException {
-        Livre l = new Livre("Clean Code", 2008, "R. Martin", 464);
+        Livre l = new Livre.Builder("Clean Code", 2008, "R. Martin", 464).build();
 
         l.emprunter();
 
