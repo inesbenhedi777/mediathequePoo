@@ -15,6 +15,11 @@ public class Catalogue<T extends Document> implements Iterable <T> {
                 .findFirst();
     }
 
+    public Catalogue() { }
+    public Catalogue(Catalogue<? extends T> original) {
+        this.elements.addAll(original.elements);
+    }
+
     @Override
     public  Iterator<T> iterator (){
         return Collections.unmodifiableList(elements).iterator();
