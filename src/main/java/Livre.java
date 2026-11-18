@@ -4,7 +4,7 @@ public class Livre extends Document implements Empruntable {
     private final int nbPages;
     private final String isbn;
     private final String editeur;
-    private final String langue;   
+    private final String langue;
     private boolean disponible = true;
 
 
