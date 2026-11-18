@@ -39,6 +39,21 @@ class RapportServiceTest {
         }
     }
 
+
+    static class FakeFormat implements FormatRapport {
+        private List<Document> docsRecus;
+
+        @Override
+        public String formatter(List<Document> docs) {
+            this.docsRecus = docs;
+            return "CONTENU-FAKE";
+        }
+
+        public List<Document> getDocsRecus() {
+            return docsRecus;
+        }
+    }
+
     @Test
     void genererRapportAvecFakes() throws IOException {
         List<Document> docs = new ArrayList<>();
@@ -57,4 +72,22 @@ class RapportServiceTest {
         assertTrue(notificateur.estNotifie());
         assertEquals("Rapport genere", notificateur.getDernierMessage());
     }
+
+
+    @Test
+    void genererRapportAvecFauxFormat() throws IOException {
+        List<Document> docs = new ArrayList<>();
+        docs.add(new Dvd("Matrix", 1999, 136));
+
+        FakeFormat format = new FakeFormat();
+        FakeDestination destination = new FakeDestination();
+        FakeNotificateur notificateur = new FakeNotificateur();
+
+        new RapportService(format, destination, notificateur).genererRapport(docs);
+        
+        assertSame(docs, format.getDocsRecus());
+        assertEquals("CONTENU-FAKE", destination.getContenuEcrit());
+        assertTrue(notificateur.estNotifie());
+    }
+
 }
