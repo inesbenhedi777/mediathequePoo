@@ -1,0 +1,57 @@
+FICHES PATTERNS - SEANCE 3
+
+
+STRATEGY
+
+Nom / famille
+Strategy - comportemental
+
+Intention
+Definir une famille d'algorithmes interchangeables, chacun encapsule derriere une meme interface, pour pouvoir changer d'algorithme sans modifier le code qui l'utilise.
+
+Participants
+- Contexte : la classe qui a besoin de l'algorithme. Elle garde une reference vers une Strategie (injectee par le constructeur) et appelle strategie.algorithme() dans operation(), sans savoir laquelle c'est.
+- Strategie (interface) : le contrat commun, avec la methode algorithme().
+- StrategieConcreteA / StrategieConcreteB : les implementations, chacune avec sa propre facon de faire l'algorithme.
+
+Situation mediatheque
+Le formatage des rapport:
+- Contexte = RapportService
+- Strategie = l'interface FormatRapport
+- StrategieConcreteA/B = FormatCsv, FormatTxt  RapportService appelle format.formatter(docs) sans savoir quel format est utilise. Ajouter un format = une nouvelle classe, zero modification.
+
+Consequences
++ Respecte l'OCP : on ajoute une strategie sans modifier l'existant.
++ Supprime les cascades de if/switch sur le type d'algorithme.
++ Le Contexte se teste facilement avec une fausse strategie.
+- Plus de classes et d'interfaces (cout de lecture).
+- Le client doit connaitre les strategies pour choisir la bonne, et
+  quelqu'un doit assembler le tout (le main).
+
+
+
+ITERATOR
+
+Nom / famille
+Iterator - comportemental
+
+Intention
+Donner un acces sequentiel aux elements d'une collection sans reveler sa representation interne.
+
+Participants
+- Iterable (la collection) : Catalogue<T>, qui fournit un iterateur via iterator().
+- Iterator (le curseur) : l'objet qui parcourt les elements (hasNext(),next()).
+- Le client : le code qui parcourt avec un for-each, sans connaitre la structure interne.
+
+Situation mediatheque
+Catalogue<T> implemente Iterable<T> et son iterator() delegue a la liste interne. Le client ecrit : for (Document d : catalogue) { ... }
+Plus besoin de afficherTout() ni de getElements() : l'affichage est l'affaire du client et la liste interne n'est pas exposee.
+
+Consequences
++ Encapsulation : la liste interne reste privee (pas de getElements().clear()).
++ Parcours uniforme : le for-each marche, et les Stream aussi.
++ On peut changer la structure (ArrayList -> TreeSet) sans impact client.
++ L'affichage sort du Catalogue (premier pas vers le SRP).
+- Une indirection de plus.
+- Un seul parcours standard : pour un autre ordre ou un filtre, il faut
+  un autre iterateur ou un Stream.
