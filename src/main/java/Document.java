@@ -18,6 +18,10 @@ public abstract class Document implements Comparable<Document> {
         return titre;
     }
 
+    public int getAnnee() {
+        return annee;
+    }
+
     public int getId() {
         return id;
     }
