@@ -29,4 +29,10 @@ class ImporteurCsvTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new ImporteurCsv().importer(List.of("cd;Truc;2000;10")));
     }
+
+    @Test
+    void livreInvalideRefuseALImport() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new ImporteurCsv().importer(List.of("livre;Vieux;1400;X;100")));
+    }
 }
