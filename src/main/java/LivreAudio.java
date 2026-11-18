@@ -2,8 +2,8 @@ public class LivreAudio extends Livre {
 
     private final int dureeMin;
 
-    public LivreAudio(String titre, int annee, String auteur, int nbPages, int dureeMin) {
-        super(titre, annee, auteur, nbPages);
+    public LivreAudio(Livre.Builder b, int dureeMin) {
+        super(b.valider());
         this.dureeMin = dureeMin;
     }
 

@@ -20,4 +20,11 @@ class ImporteurLignesLivresAudioTest {
         assertInstanceOf(LivreAudio.class, docs.get(0));
         assertTrue(docs.get(0).descriptionCourte().contains("1260 min"));
     }
+
+    @Test
+    void livreAudioInvalideRefuse() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new ImporteurLignesLivresAudio()
+                        .importer(List.of("Vieux;1400;X;100;60")));
+    }
 }
