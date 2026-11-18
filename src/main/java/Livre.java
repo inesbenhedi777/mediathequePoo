@@ -6,11 +6,7 @@ public class Livre extends Document implements Empruntable {
     private final String editeur;
     private final String langue;
     private boolean disponible = true;
-
-
-    public Livre(String titre, int annee, String auteur, int nbPages) {
-        this(new Builder(titre, annee, auteur, nbPages));
-    }
+    
 
 
     protected Livre(Builder b) {
