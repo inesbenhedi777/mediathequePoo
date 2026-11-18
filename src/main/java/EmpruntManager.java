@@ -10,9 +10,6 @@ public class EmpruntManager {
         Document doc = catalogue.rechercherParTitre(titre)
             .orElseThrow(() -> new DocumentIntrouvableException("Document introuvable : " + titre));
 
-        // Verification d'une CAPACITE (pas une cascade de type) -- usage
-        // legitime d'instanceof avec pattern matching, different de
-        // l'interdit "cascade instanceof" de la seance 1.
         if (doc instanceof Empruntable empruntable) {
             empruntable.emprunter();
         } else {
