@@ -1,7 +1,11 @@
+import java.time.LocalDate;
+
 public class EmpruntManager {
     private final Catalogue<Document> catalogue;
+    private final ConfigurationMediatheque config = ConfigurationMediatheque.getInstance();
 
     public EmpruntManager(Catalogue<Document> catalogue) {
+
         this.catalogue = catalogue;
     }
 
@@ -15,5 +19,9 @@ public class EmpruntManager {
         } else {
             throw new DocumentIndisponibleException("Non empruntable : " + titre);
         }
+    }
+
+    public LocalDate dateRetourPrevue() {
+        return LocalDate.now().plusDays(config.getDureeEmprunt());
     }
 }
