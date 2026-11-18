@@ -2,11 +2,11 @@ import java.time.LocalDate;
 
 public class EmpruntManager {
     private final Catalogue<Document> catalogue;
-    private final ConfigurationMediatheque config = ConfigurationMediatheque.getInstance();
+    private final ConfigurationMediatheque config;
 
-    public EmpruntManager(Catalogue<Document> catalogue) {
-
+    public EmpruntManager(Catalogue<Document> catalogue, ConfigurationMediatheque config) {
         this.catalogue = catalogue;
+        this.config = config;
     }
 
     public void emprunter(String titre) throws DocumentIntrouvableException,

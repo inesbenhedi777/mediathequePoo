@@ -5,7 +5,7 @@ class EmpruntManagerTest {
     @Test
     void emprunterDocumentIntrouvable() {
         Catalogue<Document> catalogue = new Catalogue<>();
-        EmpruntManager manager = new EmpruntManager(catalogue);
+        EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 
         assertThrows(DocumentIntrouvableException.class,
             () -> manager.emprunter("LivreInexistant"));
@@ -16,7 +16,7 @@ class EmpruntManagerTest {
         Catalogue<Document> catalogue = new Catalogue<>();
         Livre livre = new Livre("Clean Code", 2008, "R. Martin", 464);
         catalogue.ajouter(livre);
-        EmpruntManager manager = new EmpruntManager(catalogue);
+        EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 
         assertDoesNotThrow(() -> manager.emprunter("Clean Code"));
 
@@ -32,7 +32,7 @@ class EmpruntManagerTest {
         Catalogue<Document> catalogue = new Catalogue<>();
         Revue revue = new Revue("Science", 2026, 412);
         catalogue.ajouter(revue);
-        EmpruntManager manager = new EmpruntManager(catalogue);
+        EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 
         DocumentIndisponibleException ex = assertThrows(
             DocumentIndisponibleException.class,
@@ -46,7 +46,7 @@ class EmpruntManagerTest {
         Catalogue<Document> catalogue = new Catalogue<>();
         Livre livre = new Livre("Clean Code", 2008, "R. Martin", 464);
         catalogue.ajouter(livre);
-        EmpruntManager manager = new EmpruntManager(catalogue);
+        EmpruntManager manager = new EmpruntManager(catalogue, new ConfigurationMediatheque(21, 5));
 
         // Demonstration de try-with-resources avec AutoCloseable
         try (RapportEmprunts rapport = new RapportEmprunts()) {
